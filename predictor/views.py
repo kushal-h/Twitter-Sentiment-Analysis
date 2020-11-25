@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 import numpy as np
 import tensorflow as tf
@@ -15,7 +16,11 @@ def clean_tweet(tweet):
     return tweet
 
 def home(request):
-    return render(request, 'predict.html')
+    if request.method == "POST":
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+    else:
+        return render(request, 'predict.html')
 
 def predict(request):
     if request.method == "POST":

@@ -43,13 +43,14 @@ div {
 <h3>{{output.0}}</h3>
 <h3>The probability score is:{{output.1}}</h3>
 <div>
-
+    <form >
     {% csrf_token %}
 
     <br><br>
     <br>
-    <input type="submit" value="Predict new tweet">
-
+<input type="hidden" name="next" value="{{ request.path }}">
+    <input type="submit" value=" Predict new tweet ">
+</form>
 </div>
 </body>
 </html>
